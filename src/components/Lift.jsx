@@ -4,7 +4,7 @@ function Lift({ floorNum, isActive }) {
   return (
     <div
       className={`${
-        isActive ? "bg-green-300" : ""
+        isActive ? "bg-green-300" : "bg-white"
       } h-30 w-50 border flex items-center justify-center text-4xl`}
     >
       {floorNum}

@@ -1,24 +1,20 @@
 import Lift from "./Lift";
 import Button from "./Button";
 
-function Floor({ floorNum, activeFloor, setActiveFloor, isDisable }) {
-  const isActive = activeFloor === floorNum;
+function Floor({ floorNum, activeBtn, setActiveBtn, isDisable }) {
+  const isActive = activeBtn === floorNum;
 
   return (
     <div className="flex items-center  gap-5">
-      {[floorNum].map((btn) => {
-        return (
-          <Button
-            key={btn}
-            isActive={isActive}
-            btnName={btn}
-            onclick={() => {
-              setActiveFloor(floorNum);
-            }}
-            disabled={isDisable}
-          />
-        );
-      })}
+      <Button
+        isActive={isActive}
+        btnName={floorNum}
+        onclick={() => {
+          setActiveBtn(floorNum);
+        }}
+        disabled={isDisable}
+      />
+
       <Lift floorNum={floorNum} isActive={isActive} />
     </div>
   );
