@@ -2,11 +2,26 @@ import Floor from "./components/Floor";
 import { useState } from "react";
 
 function App() {
-  const [activeBtn, setActiveBtn] = useState(0);
+  const [currentFloor, setCurrentFloor] = useState(0);
   const [liftOn, setLiftOn] = useState(false);
+
   const toggleLift = () => {
     setLiftOn(!liftOn);
   };
+
+  const moving = (targetFloor) => {
+    const stepUpDown = targetFloor > currentFloor ? 1 : -1;
+    let tempFloor = currentFloor;
+    const totalSteps = Math.abs(targetFloor - tempFloor);
+
+    for (let i = 1; i <= totalSteps; i++) {
+      setTimeout(() => {
+        tempFloor += stepUpDown;
+        setCurrentFloor(tempFloor);
+      }, i * 1000);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-3xl text-center m-5 font-bold">Elevator</h1>
@@ -27,9 +42,9 @@ function App() {
             <Floor
               key={floorIndex}
               floorNum={floorNum}
-              activeBtn={activeBtn}
-              setActiveBtn={setActiveBtn}
+              currentFloor={currentFloor}
               isDisable={!liftOn}
+              moving={moving}
             />
           );
         })}
