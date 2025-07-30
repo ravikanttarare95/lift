@@ -6,7 +6,7 @@ function Button({ onclick, btnName, disabled, isActive }) {
         className={`min-w-[50px] w-fit border text-sm font-semibold rounded-full shadow-lg shadow-gray-400 ${
           disabled
             ? "opacity-50 cursor-not-allowed"
-            : `opacity-100 cursor-pointer  ${
+            : ` cursor-pointer  ${
                 isActive ? "bg-green-300 text-green-800" : "bg-gray-300"
               }`
         }`}

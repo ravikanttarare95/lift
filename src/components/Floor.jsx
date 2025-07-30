@@ -1,30 +1,43 @@
 import Lift from "./Lift";
 import Button from "./Button";
 
-function Floor({ floorNum, currentFloor, isDisable, moving, setFloorQueue }) {
+function Floor({
+  floorNum,
+  currentFloor,
+  isDisable,
+  moveToTarget,
+  setFloorQueue,
+  activeBtn,
+}) {
   return (
-    <div className="flex items-center  gap-5 mt-1">
+    <div className="flex items-center  gap-10 mt-1">
       <Lift floorNum={floorNum} isActive={currentFloor === floorNum} />
+
       <div className="h-15 flex flex-col justify-around">
         <Button
-          isActive={currentFloor === floorNum}
+          isActive={
+            activeBtn.btnFloor === floorNum && activeBtn.direction === "up"
+          }
           btnName={"⮝"}
           onclick={() => {
-            moving(floorNum);
+            moveToTarget(floorNum, "up");
             setFloorQueue(floorNum);
           }}
           disabled={isDisable}
         />
         <Button
-          isActive={currentFloor === floorNum}
+          isActive={
+            activeBtn.btnFloor === floorNum && activeBtn.direction === "down"
+          }
           btnName={"⮟"}
           onclick={() => {
-            moving(floorNum);
+            moveToTarget(floorNum, "down");
             setFloorQueue(floorNum);
           }}
           disabled={isDisable}
         />
       </div>
+      <p className="text-xl">{currentFloor}</p>
     </div>
   );
 }
